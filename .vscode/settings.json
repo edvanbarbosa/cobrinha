@@ -1,0 +1,6 @@
+{
+    "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+        "live-server-extension": true
+    },
+    "liveServer.settings.port": 5501
+}

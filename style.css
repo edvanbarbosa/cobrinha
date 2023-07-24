@@ -1,0 +1,38 @@
+@charset "UTF-08";
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #1f1f20;
+    height: 100vh;
+    width: 100vw;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;    
+}
+
+canvas{
+
+    background-color: #434244;
+}
+.scores{
+    display: flex;
+    justify-content: space-between;
+    width: 990px;
+    padding: 1em;
+    background-color: #fff;
+    border-bottom: 2px solid #1f1f20;
+    font-family: 'DM Mono', monospace;
+    font-size: 1.5em;
+    color: #434244;
+    font-weight: 500;
+}
