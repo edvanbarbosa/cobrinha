@@ -1,4 +1,3 @@
-
 const getElement = (e)=> document.querySelector(e)
 const canvas = getElement('canvas')
 const T_SCORE = getElement('.score  span')
@@ -8,6 +7,7 @@ const canvasWidth = canvas.width
 const canvasHeight = canvas.height
 const size = 30
 let SimpleScore = 0
+const GameOverAudio = new Audio('songs/gameOver.wav')
 
 
 
@@ -16,13 +16,10 @@ const apple = new Apple(ctx,size,cobra,SimpleScore)
 
 const ScoreFunction = ()=>{
 
-    if(cobra.snakeHead.x > canvasWidth || cobra.snakeHead.x  < 0 ||cobra.snakeHead.y > canvasHeight||cobra.snakeHead.y < 0 ){
-        GameOver()
-
-    }
-
     SimpleScore = apple.ss
     T_SCORE.innerHTML = SimpleScore
+    B_SCORE.innerHTML = localStorage.getItem('BestScore')
+    
     if(SimpleScore > localStorage.getItem('BestScore') ){
         B_SCORE.innerHTML = localStorage.getItem('BestScore') //acessando item do localStorage e modificando valor. Usado para pesistência de dados, faz com que salve o bestScore mesmo que o player saia da página, feche o navegador ou desligue o pc
         localStorage.setItem('BestScore',SimpleScore) //modificando o item do localStorage
@@ -35,10 +32,12 @@ const GameOver = ()=> {
     cobra.snake = [
         { x:0, y:0 }
     ]
-    cobra.direction = 'po'
+    cobra.direction = undefined
     apple.position()
     apple.ss = 0
     SimpleScore = 0
+    GameOverAudio.play()
+    cobra.colorBody = cobra.colorHead = "red"
 }
 
 document.addEventListener('keydown',(e)=>{
@@ -59,16 +58,37 @@ document.addEventListener('keydown',(e)=>{
 
 })
 
-B_SCORE.innerHTML = localStorage.getItem('BestScore')
+
 
 const draw = ()=>{
+
+    if(cobra.snakeHead.x + cobra.size > canvasWidth || cobra.snakeHead.x  < 0 ||cobra.snakeHead.y + cobra.size > canvasHeight||cobra.snakeHead.y < 0 ){
+        GameOver()
+
+    }
+    cobra.snake.forEach((e)=>{
+        if(e != cobra.snakeHead){
+            if(e.x == cobra.snakeHead.x && e.y == cobra.snakeHead.y){
+                GameOver()
+            }
+        }
+    })
+
     ScoreFunction()
     ctx.clearRect(0,0,canvasWidth,canvasHeight)
     apple.draw()
     cobra.draw()
+    
    
 }
 
+document.addEventListener('scroll', ()=>{
+
+    const pageX = parseInt(window.scrollX)
+    const pageY = parseInt(window.scrollY)
+
+})
 
 apple.position()
 setInterval(draw,80)
+

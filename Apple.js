@@ -7,6 +7,7 @@ class Apple{
         this.snake = snake
         this.color = '#dc143c'
         this.ss = SimpleScore
+        this.AudioPegar = new Audio('songs/pegar.mp3')
     }
     position(){
         this.x = Math.floor(Math.random()*canvasWidth/this.size)*this.size
@@ -19,7 +20,7 @@ class Apple{
             this.position()
             this.ss +=1
             this.snake.snake.unshift({x:this.snake.x + (this.snake.size*(this.snake.length + 1)),y:0})
-            
+            this.AudioPegar.play()
         }
 
     }

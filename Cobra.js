@@ -8,6 +8,8 @@ class Cobra{
           
         ]
         this.snakeHead= 0
+        this.colorHead = '#fff'
+        this.colorBody = '#ddd'
         
     }
  
@@ -38,11 +40,15 @@ class Cobra{
     draw(){
         this.movement()
         this.snake.forEach((e, index)=>{
-            index == this.snake.length  - 1? this.ctx.fillStyle = '#fff':  this.ctx.fillStyle = '#ddd'
+            index == this.snake.length  - 1? this.ctx.fillStyle = this.colorHead:  this.ctx.fillStyle = this.colorBody
             this.ctx.fillRect(e.x,e.y,this.size,this.size)
         })
+        this.colorHead = '#fff'
+        this.colorBody = '#ddd'
         
     }
 }
+
+
 
 
