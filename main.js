@@ -43,16 +43,16 @@ const GameOver = ()=> {
 document.addEventListener('keydown',(e)=>{
 
     const key = e.key
-    if(key == 'ArrowUp' && cobra.direction != 'bottom'){
+    if(key == 'ArrowUp' && cobra.direction != 'bottom'|| key == 'w' && cobra.direction != 'bottom'){
        cobra.direction = 'up'
     }
-    if(key == 'ArrowDown' && cobra.direction != 'up'){
+    if(key == 'ArrowDown' && cobra.direction != 'up' || key == 's' && cobra.direction != 'up'){
         cobra.direction = 'bottom'
     }
-    if(key == 'ArrowLeft' && cobra.direction != 'right'){
+    if(key == 'ArrowLeft' && cobra.direction != 'right'|| key == 'a' && cobra.direction != 'right'){
         cobra.direction = 'left'
     }
-    if(key == 'ArrowRight' && cobra.direction != 'left'){
+    if(key == 'ArrowRight' && cobra.direction != 'left' || key == 'd' && cobra.direction != 'left'){
         cobra.direction = 'right'
     }
 
